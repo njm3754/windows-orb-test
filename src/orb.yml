@@ -1,0 +1,52 @@
+version: 2.1
+description: |
+  A basic orb for running windows-related stuff
+orbs:
+  orb-tools: circleci/orb-tools@10.0.4
+commands:
+  greet:
+    description: Greet someone with a "hello".
+    parameters:
+      to:
+        type: string
+        default: World
+    steps:
+      - run: echo "Hello, << parameters.to >>"
+  install_sql_package:
+    description: Install package for SQL operations
+  nuget_restore:
+    description: Run a NuGet Restore
+    parameters:
+      solution:
+        type: string
+    steps:
+      - run: echo "Running Nuget restore"
+  ms_build:
+    description: Run MS Build
+    parameters:
+      # Required parameters
+      solution:
+        type: string
+      msbuildArgs:
+        type: string
+      platform:
+        type: string
+      build_configuration:
+        type: string
+      # Parameters with default values
+      vsVersion:
+        type: string
+        default: latest
+      target:
+        type: string
+        default: Rebuild
+      logFileVerbosity:
+        type: string
+        default: diagnostic
+    steps:
+      - run: echo "Running MS Build"
+  vs_test:
+    description: Run VS Test
+    steps:
+      - run: echo "Running VS Test"
+  
